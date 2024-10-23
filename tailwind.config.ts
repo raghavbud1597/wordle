@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        primary: ["Poppins", "serif"],
+        secondary: [ "IBM Plex Serif", "serif"],
+      },
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
