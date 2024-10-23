@@ -3,18 +3,17 @@
 import WordleRow from "./WordleRow";
 
 interface WordleBoardProps {
-  attempts: string[];
+  attempts: string[][];
   feedback: number[][];
-  currentGuess: string;
+  currentGuess: number;
 }
 
 export default function WordleBoard({ attempts, feedback, currentGuess }: WordleBoardProps) {
   return (
     <div className="grid grid-rows-6 gap-2">
-      {attempts.map((attempt, index) => (
+      {attempts.map((attempt:string[], index:number) => (
         <WordleRow key={index} word={attempt} feedback={feedback[index]} />
       ))}
-      {attempts.length < 6 && <WordleRow word={currentGuess} />}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import WordleBoard from "./WordleBoard";
 import Keyboard from "./Keyboard";
 import { validateWord } from "../api/validateWord";
@@ -8,49 +8,76 @@ import {MAX_ATTEMPTS, WORD_LENGTH} from "../constants/GameInfo";
 
 
 export default function WordleGame() {
-  const [attempts, setAttempts] = useState<string[]>([]);
-  const [currentGuess, setCurrentGuess] = useState("");
-  const [gameOver, setGameOver] = useState(false);
+  const [attempts, setAttempts] = useState<string[][]>(Array(MAX_ATTEMPTS).fill(Array(WORD_LENGTH).fill('')));
+  const [currentRow, setCurrentRow] = useState<number>(0);
+  const [currentCol, setCurrentCol] = useState<number>(0);
   const [feedback, setFeedback] = useState<number[][]>([]); // Array of score arrays
 
   const handleInput = (letter: string) => {
-    if (gameOver || currentGuess.length >= WORD_LENGTH) return;
-    setCurrentGuess((prev) => prev + letter);
+    
   };
 
   const handleDelete = () => {
-    setCurrentGuess((prev) => prev.slice(0, -1));
+    
   };
 
   const handleSubmit = async () => {
-    if (currentGuess.length !== WORD_LENGTH) return;
+    
+  };
 
-    try {
-      const { isvalidword, score } = await validateWord(currentGuess);
-      if (!isvalidword) {
-        alert("Invalid word");
-        return;
+  // Function to handle key press
+  const handleKeyPress = (event: KeyboardEvent) => {
+    const key = event.key;
+
+    if (key === 'Enter') {
+      // Handle 'Enter' key logic here
+      console.log('Enter pressed');
+      if (currentCol === 5) {
+        setCurrentRow((prevRow) => Math.min(prevRow + 1, 5));
+        setCurrentCol(0);
       }
-
-      setFeedback([...feedback, score]);
-      setAttempts([...attempts, currentGuess]);
-      setCurrentGuess("");
-
-      if (score.every((s) => s === 2)) {
-        setGameOver(true);
-        alert("Congratulations, you guessed the word!");
-      } else if (attempts.length + 1 === MAX_ATTEMPTS) {
-        setGameOver(true);
-        alert("Game over! You've used all attempts.");
+    } else if (key === 'Backspace') {
+      // Handle 'Backspace' key logic here
+      console.log('Backspace pressed');
+      if (currentCol > 0) {
+        setCurrentCol((prevCol) => prevCol - 1);
+        updateGrid('', currentRow, currentCol - 1); // Clear previous column
       }
-    } catch (error) {
-      console.error("Error validating word:", error);
+    } else if (/^[a-zA-Z]$/.test(key) && key.length === 1) {
+      // Handle letter input (a-z)
+      console.log(`${key.toUpperCase()} pressed`);
+      if (currentCol < 5) {
+        updateGrid(key.toUpperCase(), currentRow, currentCol);
+        setCurrentCol((prevCol) => Math.min(prevCol + 1, 5));
+      }
     }
   };
 
+  // Function to update the grid
+  const updateGrid = (letter: string, row: number, col: number) => {
+    setAttempts((prevGrid) => {
+      const newGrid = [...prevGrid];
+      newGrid[row] = [...newGrid[row]];
+      newGrid[row][col] = letter;
+      return newGrid;
+    });
+  };
+
+  // Add event listener for key press when component mounts
+  useEffect(() => {
+    const keyDownHandler = (event: KeyboardEvent) => handleKeyPress(event);
+
+    document.addEventListener('keydown', keyDownHandler);
+
+    // Cleanup listener when component unmounts
+    return () => {
+      document.removeEventListener('keydown', keyDownHandler);
+    };
+  }, [currentRow, currentCol]);
+
   return (
     <div className="h-full flex flex-col items-center">
-      <WordleBoard attempts={attempts} feedback={feedback} currentGuess={currentGuess} />
+      <WordleBoard attempts={attempts} feedback={feedback} />
       <Keyboard onKeyPress={handleInput} onDelete={handleDelete} onEnter={handleSubmit} />
     </div>
   );
