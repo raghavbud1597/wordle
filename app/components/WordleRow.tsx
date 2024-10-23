@@ -3,7 +3,7 @@
 import WordleCell from "./WordleCell";
 
 interface WordleRowProps {
-  word: string[];
+  word: string[]; // Word array
   feedback?: number[]; // Feedback array with scores
 }
 

@@ -1,3 +1,19 @@
+/**
+ * WordleCell.tsx
+ * 
+ * This component renders a single cell in the Wordle game grid. Each cell displays a letter from the player's
+ * current attempt, and the background color of the cell reflects the correctness of the letter based on the 
+ * score provided.
+ * 
+ * Props:
+ * - `letter`: The letter to display inside the cell.
+ * - `score`: Optional. A number representing feedback on the letter. It can be one of the following:
+ *    - `0`: Letter is not present in the word (gray background).
+ *    - `1`: Letter is present but in the wrong position (yellow background).
+ *    - `2`: Letter is present and in the correct position (green background).
+ *    - `3`: Represents the current attempt cell (highlighted for user input).
+ */
+
 "use client";
 
 interface WordleCellProps {
