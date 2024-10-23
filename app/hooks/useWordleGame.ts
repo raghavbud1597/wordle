@@ -53,8 +53,9 @@ export const useWordleGame = () => {
 
       // Validate the word via API call
       const isValid = await validateWord(currentWord);
-      if (isValid) {
-        setFeedback((prevFeedback) => [...prevFeedback, [0, 1, 2, 0, 1]]); // Dummy feedback
+      debugger;
+      if (isValid.is_valid_word) {
+        setFeedback((prevFeedback) => [...prevFeedback, isValid.score]); // Dummy feedback
         setCurrentRow((prevRow) => prevRow + 1); // Move to the next row
         setCurrentCol(0); // Reset column for the new row
       } else {
