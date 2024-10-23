@@ -23,7 +23,7 @@ interface WordleBoardProps {
 
 export default function WordleBoard({ attempts, feedback }: WordleBoardProps) {
   return (
-    <div className="grid grid-rows-6 gap-2"> 
+    <div className="grid grid-rows-6 gap-2 my-4"> 
       {/* Map over the attempts array to render each attempt as a WordleRow */}
       {attempts.map((attempt: string[], index: number) => (
         // Each row is passed the word (attempt) and feedback for that row

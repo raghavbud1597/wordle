@@ -1,16 +1,18 @@
 import WordleGame from "../components/WordleGame";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import ToastProvider from "../components/ToastProvider";
 
 // This is the server component rendering the game page
 export default function GamePage() {
   return (
-    <div className="min-h-screen bg-white dark:bg-slate-900">
+    <div className="min-h-screen">
       <Navbar />
-      <div className="min-h-screen flex items-center justify-center">
+      <div className="min-h-full flex items-center justify-center p-1 md:p-8">
         <WordleGame />
       </div>
       <Footer />
+      <ToastProvider />
     </div>
   );
 }

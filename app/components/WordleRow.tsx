@@ -11,7 +11,7 @@ export default function WordleRow({ word, feedback = [] }: WordleRowProps) {
   return (
     <div className="grid grid-cols-5 gap-2">
       {word.map((letter, index) => (
-        <WordleCell key={index} letter={letter} score={feedback[index] || 0} />
+        <WordleCell key={index} letter={letter} score={feedback.length ? feedback[index] : -1} />
       ))}
     </div>
   );

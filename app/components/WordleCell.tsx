@@ -31,7 +31,7 @@ export default function WordleCell({ letter, score }: WordleCellProps) {
       cellColor = "text-white bg-yellow-600"; // Misplaced
     } else if (score === 2) {
       cellColor = "text-white bg-green-600"; // Correct
-    } else if (score === 3) {
+    } else {
       cellColor = "text-black border-black dark: text-white dark:border-white"; // Current Attempt Cell
     }
   }
