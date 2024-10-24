@@ -1,31 +1,40 @@
 /**
  * useWordleGame.ts
- * 
- * This custom hook encapsulates the logic for the Wordle game. It handles the game state, 
- * including the current attempts, input handling, and keypress events. It is designed to 
- * separate the game logic from the UI, providing clean and reusable functionality.
+ *
+ * Custom hook encapsulating the logic for the Wordle game. It handles the game state, 
+ * including current attempts, input handling, and keypress events. The game status is tracked 
+ * to prevent further input once the game is won or lost.
  */
+"use client";
 
 import { useState, useEffect } from 'react';
 import { validateWord } from '../api/validateWord';
-import { MAX_ATTEMPTS, WORD_LENGTH } from '../constants/GameInfo';
+import { MAX_ATTEMPTS, WORD_LENGTH, DEFAULT_FEEDBACK } from '../constants/GameInfo';
 import { toast } from 'react-toastify';
+import { saveGameState, loadGameState } from '../helpers/gameHelpers';
 
-const DEFAULT_FEEDBACK = Object.fromEntries(
-  Array.from("abcdefghijklmnopqrstuvwxyz").map((char) => [char, -1])
-);
-
-// Custom hook for managing the Wordle game state and logic
+// Custom hook for managing the Wordle game state and logic with localStorage persistence
 export const useWordleGame = () => {
-  // Initialize the game board with empty values for MAX_ATTEMPTS and WORD_LENGTH
+  // Initialize the game state, either from localStorage or defaults
+  const savedState = loadGameState();
+
   const [attempts, setAttempts] = useState<string[][]>(
-    Array(MAX_ATTEMPTS).fill(Array(WORD_LENGTH).fill(''))
+    savedState?.attempts || Array(MAX_ATTEMPTS).fill(Array(WORD_LENGTH).fill(''))
   );
-  const [currentRow, setCurrentRow] = useState<number>(0);
-  const [currentCol, setCurrentCol] = useState<number>(0);
-  const [feedback, setFeedback] = useState<number[][]>([]);
-  const [keyFeedback, setKeyFeedback] = useState<{ [key: string]: number }>(DEFAULT_FEEDBACK);
-  const [gameStatus, setGameStatus] = useState<'playing' | 'won' | 'lost'>('playing'); // Track game status
+  const [currentRow, setCurrentRow] = useState<number>(savedState?.currentRow || 0);
+  const [currentCol, setCurrentCol] = useState<number>(savedState?.currentCol || 0);
+  const [feedback, setFeedback] = useState<number[][]>(savedState?.feedback || []);
+  const [keyFeedback, setKeyFeedback] = useState<{ [key: string]: number }>(
+    savedState?.keyFeedback || DEFAULT_FEEDBACK
+  );
+  const [gameStatus, setGameStatus] = useState<'playing' | 'won' | 'lost'>(
+    savedState?.gameStatus || 'playing'
+  );
+
+  // Store the updated state in localStorage whenever it changes
+  useEffect(() => {
+    saveGameState({ attempts, currentRow, currentCol, feedback, keyFeedback, gameStatus });
+  }, [attempts, currentRow, currentCol, feedback, keyFeedback, gameStatus]);
 
   // Handles letter input and updates the current column in the grid
   const handleInput = (letter: string) => {
@@ -71,7 +80,6 @@ export const useWordleGame = () => {
         // Update key feedback based on the score
         isValid.score.forEach((score: number, index: number) => {
           const letter = currentWord[index].toUpperCase();
-          // Update key feedback only if it's better than current score
           if (!keyFeedback[letter] || keyFeedback[letter] < score) {
             setKeyFeedback((prev) => ({ ...prev, [letter]: score }));
           } else if (score === 0) {
@@ -119,7 +127,7 @@ export const useWordleGame = () => {
     return () => {
       document.removeEventListener('keydown', keyDownHandler);
     };
-  }, [currentRow, currentCol, gameStatus]); // Include gameStatus to re-run effect when it changes
+  }, [currentRow, currentCol, gameStatus]);
 
   return {
     attempts,
