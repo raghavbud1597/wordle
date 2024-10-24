@@ -33,6 +33,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, title, children }) => {
       <div
         className="fixed inset-0 bg-black bg-opacity-50 z-40"
         onClick={onClose}
+        data-testid="overlay"
       ></div>
 
       {/* Modal */}
