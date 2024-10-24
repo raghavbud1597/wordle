@@ -17,6 +17,7 @@
 
 import React, { useState } from "react";
 import useTheme from "../hooks/useTheme";
+import { redirect } from 'next/navigation';
 import Image from "next/image";
 import WordleLogo from "../assets/wordle.svg";
 import { TbKeyboard } from "react-icons/tb";
@@ -34,7 +35,7 @@ import StatsModal from "./StatsModal";
 // Function to reset the game and clear localStorage
 const resetGame = () => {
   localStorage.removeItem("wordleGameState"); // Remove game state from localStorage
-  window.location.reload(); // Reload the page to reset the game state
+  redirect('/');  // Redirect to the home page
 };
 
 const Navbar: React.FC = () => {
