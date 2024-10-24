@@ -10,7 +10,14 @@ import { MdOutlineLightMode } from "react-icons/md";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { MdOutlineLightbulb } from "react-icons/md";
 import { IoMdStats } from "react-icons/io";
+import { BiReset } from "react-icons/bi";
 import Link from "next/link";
+
+// Function to reset the game and clear localStorage
+const resetGame = () => {
+  localStorage.removeItem('wordleGameState'); // Remove game state from localStorage
+  window.location.reload(); // Reload the page to reset the game state
+};
 
 const Navbar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
@@ -30,6 +37,9 @@ const Navbar: React.FC = () => {
         </button>
         <button className="mx-2">
           <IoMdStats onClick={() => {}} className="w-8 h-8" />
+        </button>
+        <button className="mx-2">
+          <BiReset onClick={resetGame} className="w-8 h-8" /> {/* Reset button */}
         </button>
         <button className="mx-2">
           {false ? (
