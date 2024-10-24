@@ -12,6 +12,9 @@ export const saveGameState = (state: any) => {
 
 // Helper function to load game state from localStorage
 export const loadGameState = () => {
-  const savedState = localStorage.getItem("wordleGameState");
-  return savedState ? JSON.parse(savedState) : null;
+  if (typeof window !== "undefined" && window.localStorage) {
+    const savedState = localStorage.getItem("wordleGameState");
+    return savedState ? JSON.parse(savedState) : null;
+  }
+  return null; // Return null if not in the browser environment
 };

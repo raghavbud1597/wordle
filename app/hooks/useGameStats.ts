@@ -48,16 +48,16 @@ export const useGameStats = () => {
   // Function to update statistics when a game is lost
   const recordLoss = (): void => {
     setPlayed((prev) => prev + 1);
-    setCurrentStreak(0); // Reset the current streak
+    setCurrentStreak(0); 
   };
 
   // Function to reset all stats
   const resetStats = (): void => {
-    setPlayed(0);
-    setWins(0);
-    setCurrentStreak(0);
-    setMaxStreak(0);
-    setGuessDistribution(Array(6).fill(0));
+    setPlayed(0);                        
+    setWins(0);                          
+    setCurrentStreak(0);                 
+    setMaxStreak(0);                     
+    setGuessDistribution(Array(6).fill(0)); 
   };
 
   return {

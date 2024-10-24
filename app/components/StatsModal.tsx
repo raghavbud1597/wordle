@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { useGameStats } from "../hooks/useGameStats";
 import Modal from "./Modal";
@@ -9,6 +11,7 @@ type GameStats = {
   currentStreak: number;
   maxStreak: number;
   guessDistribution: number[];
+  resetStats: () => void;
 };
 
 const StatsModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
@@ -18,7 +21,15 @@ const StatsModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
     currentStreak,
     maxStreak,
     guessDistribution,
+    resetStats,
   }: GameStats = useGameStats();
+
+  // Function to handle resetting the stats
+  const handleReset = () => {
+    if (window.confirm("Are you sure you want to reset your game stats?")) {
+      resetStats();
+    }
+  };
 
   return (
     <Modal title="Game Statistics" onClose={onClose}>
@@ -73,6 +84,16 @@ const StatsModal: React.FC<{ onClose: () => void }> = ({ onClose }) => {
           </li>
         ))}
       </ul>
+
+      {/* Reset Button */}
+      <div className="text-center mt-6">
+        <button
+          onClick={handleReset}
+          className="bg-red-600 text-white font-bold py-2 px-4 rounded-md hover:bg-red-700"
+        >
+          Reset Stats
+        </button>
+      </div>
     </Modal>
   );
 };
