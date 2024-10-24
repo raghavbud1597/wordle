@@ -27,7 +27,7 @@ interface HowToPlayModalProps {
 const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ onClose }) => {
   return (
     <Modal onClose={onClose} title="How To Play">
-      <section>
+      <section className="max-h-[70vh] overflow-y-auto"> 
         <p className="text-2xl">Guess the Wordle in 6 tries.</p>
         <ul>
           <li className="text-lg">Each guess must be a valid 5-letter word.</li>
