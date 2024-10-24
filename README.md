@@ -1,6 +1,3 @@
-Here's an updated `README.md` with additional features related to game stats, light and dark themes, and keyboard representation of tile colors:
-
-```markdown
 # Wordle Game
 
 This is a React-based Wordle game where players can guess a 5-letter word within six tries. The game provides feedback on the guessed letters, indicating their presence and position in the target word.
