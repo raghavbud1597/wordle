@@ -38,7 +38,7 @@ export default function Keyboard({
           <button
             key={letter}
             onClick={() => onKeyPress(letter)}
-            className={`rounded-md text-sm p-1 w-8 h-8 md:text-lg md:p-2 md:w-10 md:h-10 font-bold ${getKeyClass(letter)}`}
+            className={`rounded-md text-sm w-8 h-8 md:text-lg md:w-10 md:h-10 font-bold ${getKeyClass(letter)}`}
           >
             {letter}
           </button>
@@ -51,7 +51,7 @@ export default function Keyboard({
           <button
             key={letter}
             onClick={() => onKeyPress(letter)}
-            className={`rounded-md text-sm p-1 w-8 h-8 md:text-lg md:p-2 md:w-10 md:h-10 font-bold ${getKeyClass(letter)}`}
+            className={`rounded-md text-sm w-8 h-8 md:text-lg md:w-10 md:h-10 font-bold ${getKeyClass(letter)}`}
           >
             {letter}
           </button>
@@ -70,7 +70,7 @@ export default function Keyboard({
           <button
             key={letter}
             onClick={() => onKeyPress(letter)}
-            className={`rounded-md text-sm p-1 w-8 h-8 md:text-lg md:p-2 md:w-10 md:h-10 font-bold ${getKeyClass(letter)}`}
+            className={`rounded-md text-sm w-8 h-8 md:text-lg md:w-10 md:h-10 font-bold ${getKeyClass(letter)}`}
           >
             {letter}
           </button>

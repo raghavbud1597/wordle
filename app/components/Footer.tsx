@@ -2,18 +2,16 @@ import React from 'react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="flex flex-col items-center justify-center mt-12 py-4">
-      <p className="text-lg text-black dark:text-white">
+    <footer className="text-lg text-gray-500 mt-12">
         Created by{" "}
         <a
           href="https://raghavbud1597.github.io/web-portfolio/"
+          className="text-gradient"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:underline"
         >
           Raghav Budhiraja
         </a>
-      </p>
     </footer>
   );
 };

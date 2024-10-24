@@ -23,14 +23,16 @@ interface WordleCellProps {
 
 export default function WordleCell({ letter, score }: WordleCellProps) {
   let cellColor:string = "border-black dark:border-white"; // Empty cell
+  let animationClass: string = "";
 
   if(letter !== "") {
+    animationClass = "animate-growShrink";
     if (score === 0) {
       cellColor = "text-white bg-slate-500"; // Not Present
     } else if (score === 1) {
-      cellColor = "text-white bg-yellow-600"; // Misplaced
+      cellColor = "text-white bg-yellow-600 animate-rotate"; // Misplaced
     } else if (score === 2) {
-      cellColor = "text-white bg-green-600"; // Correct
+      cellColor = "text-white bg-green-600 animate-rotate"; // Correct
     } else {
       cellColor = "text-black border-black dark: text-white dark:border-white"; // Current Attempt Cell
     }
@@ -38,7 +40,7 @@ export default function WordleCell({ letter, score }: WordleCellProps) {
   
 
   return (
-    <div className={`w-12 h-12 flex items-center justify-center border-2 rounded ${cellColor}`}>
+    <div className={`w-12 h-12 flex items-center justify-center border-2 rounded ${cellColor} ${animationClass}`}>
       <span className="text-xl font-bold">{letter}</span>
     </div>
   );
