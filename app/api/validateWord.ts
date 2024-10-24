@@ -13,7 +13,7 @@ const URL = "https://wordle-apis.vercel.app/api/validate";
 
 // TypeScript interface for the expected API response
 interface ValidateResponse {
-  isvalidword: boolean;   
+  is_valid_word: boolean;   
   score: [0 | 1 | 2, 0 | 1 | 2, 0 | 1 | 2, 0 | 1 | 2, 0 | 1 | 2];
 }
 

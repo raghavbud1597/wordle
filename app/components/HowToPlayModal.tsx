@@ -3,20 +3,19 @@ import Modal from "./Modal";
 import WordleRow from "./WordleRow"; // Assuming you already have WordleRow component
 
 interface HowToPlayModalProps {
-  isOpen: boolean;
   onClose: () => void;
 }
 
-const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ isOpen, onClose }) => {
+const HowToPlayModal: React.FC<HowToPlayModalProps> = ({ onClose }) => {
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title="How To Play">
+    <Modal onClose={onClose} title="How To Play">
       <section>
-        <p className="text-lg">Guess the Wordle in 6 tries.</p>
-        <p className="text-lg">Each guess must be a valid 5-letter word.</p>
-        <p className="text-lg">
-          The color of the tiles will change to show how close your guess was to
-          the word.
-        </p>
+        <p className="text-2xl">Guess the Wordle in 6 tries.</p>
+        <ul>
+            <li className="text-lg">Each guess must be a valid 5-letter word.</li>
+            <li className="text-lg">The color of the tiles will change to show how close your guess was to
+            the word.</li>
+        </ul>
         <h3 className="font-bold my-2 text-2xl">Examples</h3>
 
         {/* Word examples using WordleRow component */}

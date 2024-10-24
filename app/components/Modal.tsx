@@ -30,7 +30,7 @@ const Modal: React.FC<ModalProps> = ({ onClose, title, children }) => {
           </button>
 
           {/* Modal Title */}
-          <h2 className="text-2xl font-bold mb-4 text-black dark:text-white">
+          <h2 className="text-2xl font-bold mb-4 text-black font-secondary dark:text-white">
             {title}
           </h2>
 

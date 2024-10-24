@@ -12,11 +12,13 @@ import { validateWord } from '../api/validateWord';
 import { MAX_ATTEMPTS, WORD_LENGTH, DEFAULT_FEEDBACK } from '../constants/GameInfo';
 import { toast } from 'react-toastify';
 import { saveGameState, loadGameState } from '../helpers/gameHelpers';
+import { useGameStats } from './useGameStats';
 
 // Custom hook for managing the Wordle game state and logic with localStorage persistence
 export const useWordleGame = () => {
   // Initialize the game state, either from localStorage or defaults
   const savedState = loadGameState();
+  const { recordWin, recordLoss } = useGameStats(); // Get stats functions
 
   const [attempts, setAttempts] = useState<string[][]>(
     savedState?.attempts || Array(MAX_ATTEMPTS).fill(Array(WORD_LENGTH).fill(''))
@@ -91,9 +93,11 @@ export const useWordleGame = () => {
         if (isValid.score.every((score: number) => score === 2)) {
           setGameStatus('won'); // Mark game as won
           toast.success('Congratulations! You guessed the word!');
+          recordWin(currentRow + 1); // Record the win with attempts
         } else if (currentRow === MAX_ATTEMPTS - 1) {
           setGameStatus('lost'); // Mark game as lost if no attempts are left
           toast.error('Game Over! No more attempts.');
+          recordLoss(); // Record the loss
         } else {
           setCurrentRow((prevRow) => prevRow + 1); // Move to the next row
           setCurrentCol(0); // Reset column for the new row

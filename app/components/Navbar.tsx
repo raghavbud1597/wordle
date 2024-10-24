@@ -14,6 +14,7 @@ import { BiReset } from "react-icons/bi";
 import Link from "next/link";
 import Modal from "./Modal";
 import HowToPlayModal from "./HowToPlayModal";
+import StatsModal from "./StatsModal";
 
 // Function to reset the game and clear localStorage
 const resetGame = () => {
@@ -78,19 +79,10 @@ const Navbar: React.FC = () => {
       </span>
 
       {/* Render How to Play Modal */}
-      {showHowToPlayModal && (
-        <HowToPlayModal
-          isOpen={showHowToPlayModal}
-          onClose={() => setShowHowToPlayModal(false)}
-        />
-      )}
+      {showHowToPlayModal && <HowToPlayModal onClose={() => setShowHowToPlayModal(false)} />}
 
       {/* Render Stats Modal */}
-      {showStatsModal && (
-        <Modal onClose={() => setShowStatsModal(false)} title="Stats">
-          <p>Game statistics will be shown here...</p>
-        </Modal>
-      )}
+      {showStatsModal && <StatsModal onClose={() => setShowStatsModal(false)} />}
 
       {/* Render Reset Confirmation Modal */}
       {showResetModal && (
