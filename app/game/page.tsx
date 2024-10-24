@@ -8,7 +8,7 @@ export default function GamePage() {
     <div className="min-h-screen">
       <Navbar />
       <div className="min-h-full flex items-center justify-center p-1 md:p-8 lg:p-16">
-        <WordleGame />
+        <WordleGame/>
       </div>
       <ToastProvider />
     </div>

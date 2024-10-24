@@ -16,7 +16,7 @@ export default function Keyboard({
   const topRow = "QWERTYUIOP".split("");
   const middleRow = "ASDFGHJKL".split("");
   const bottomRow = "ZXCVBNM".split("");
-  console.log(keyFeedback);
+  
   const getKeyClass = (letter: string) => {
     const score = keyFeedback[letter]; // Default to -1 if no score
     if (score === 2) {
