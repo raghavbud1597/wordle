@@ -28,13 +28,13 @@ export default function WordleCell({ letter, score }: WordleCellProps) {
   if(letter !== "") {
     animationClass = "animate-growShrink";
     if (score === 0) {
-      cellColor = "text-white bg-slate-500"; // Not Present
+      cellColor = "text-white bg-slate-500 border-slate-400"; // Not Present
     } else if (score === 1) {
-      cellColor = "text-white bg-yellow-600 animate-rotate"; // Misplaced
+      cellColor = "text-white bg-yellow-600 animate-rotate border-yellow-800"; // Misplaced
     } else if (score === 2) {
-      cellColor = "text-white bg-green-600 animate-rotate"; // Correct
+      cellColor = "text-white bg-green-600 animate-rotate border-green-800"; // Correct
     } else {
-      cellColor = "text-black border-black dark: text-white dark:border-white"; // Current Attempt Cell
+      cellColor = "text-black border-black dark:text-white dark:border-white"; // Current Attempt Cell
     }
   }
   
