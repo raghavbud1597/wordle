@@ -31,7 +31,7 @@ export default function Keyboard({
   };
 
   return (
-    <div className="flex flex-col items-center space-y-2 mt-4 md:p-1">
+    <div className="flex flex-col items-center space-y-2 mt-4 md:py-4">
       {/* Top row */}
       <div className="flex space-x-1 md:space-x-2">
         {topRow.map((letter) => (
