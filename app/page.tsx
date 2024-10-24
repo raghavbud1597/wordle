@@ -1,6 +1,8 @@
 import Image from "next/image";
 import { FaGithub } from "react-icons/fa";
+import { IoGameControllerOutline } from "react-icons/io5";
 import WordleLogo from "./assets/wordle.svg";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -20,13 +22,19 @@ export default function Home() {
 
       {/* Buttons */}
       <div className="flex">
-        <button className="bg-black text-white rounded-full border-2 border-white px-16 py-4 mx-4 flex-1 text-2xl hover:text-black hover:bg-white">
-          Play
-        </button>
+        <Link
+          href="/game"
+          className="flex items-center bg-black text-white border-2 border-white rounded-full hover:text-black hover:bg-white hover:border-black px-12 py-2 mx-4 flex-1 text-2xl"
+        >
+          <IoGameControllerOutline className="mr-2" /> Play
+        </Link>
 
-        <button className="flex items-center bg-white text-black border-2 border-black rounded-full hover:bg-black hover:text-white  hover:border-white px-12 py-2 mx-4 flex-1 text-2xl">
+        <Link
+          href="https://github.com/raghavbud1597/wordle"
+          className="flex items-center bg-white text-black border-2 border-black rounded-full hover:bg-black hover:text-white hover:border-white px-12 py-2 mx-4 flex-1 text-2xl"
+        >
           <FaGithub className="mr-2" /> Code
-        </button>
+        </Link>
       </div>
 
       {/* Footer */}
