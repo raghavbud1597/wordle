@@ -5,7 +5,6 @@
  * including current attempts, input handling, and keypress events. The game status is tracked
  * to prevent further input once the game is won or lost.
  */
-"use client";
 
 import { useState, useEffect } from "react";
 import { validateWord } from "../api/validateWord";
@@ -18,45 +17,59 @@ import { toast } from "react-toastify";
 import { saveGameState, loadGameState } from "../helpers/gameHelpers";
 import { useGameStats } from "./useGameStats";
 
-// Custom hook for managing the Wordle game state and logic with localStorage persistence
 export const useWordleGame = () => {
-  // Initialize the game state, either from localStorage or defaults
-  const savedState = loadGameState();
   const { recordWin, recordLoss } = useGameStats(); // Get stats functions
 
   const [attempts, setAttempts] = useState<string[][]>(
-    savedState?.attempts ||
-      Array(MAX_ATTEMPTS).fill(Array(WORD_LENGTH).fill(""))
+    Array(MAX_ATTEMPTS).fill(Array(WORD_LENGTH).fill(""))
   );
-  const [currentRow, setCurrentRow] = useState<number>(
-    savedState?.currentRow || 0
-  );
-  const [currentCol, setCurrentCol] = useState<number>(
-    savedState?.currentCol || 0
-  );
-  const [feedback, setFeedback] = useState<number[][]>(
-    savedState?.feedback || []
-  );
+  const [currentRow, setCurrentRow] = useState<number>(0);
+  const [currentCol, setCurrentCol] = useState<number>(0);
+  const [feedback, setFeedback] = useState<number[][]>([]);
   const [keyFeedback, setKeyFeedback] = useState<{ [key: string]: number }>(
-    savedState?.keyFeedback || DEFAULT_FEEDBACK
+    DEFAULT_FEEDBACK
   );
   const [gameStatus, setGameStatus] = useState<"playing" | "won" | "lost">(
-    savedState?.gameStatus || "playing"
+    "playing"
   );
-
   const [loading, setLoading] = useState<boolean>(false);
+  const [isClient, setIsClient] = useState<boolean>(false);
 
-  // Store the updated state in localStorage whenever it changes
+  // Ensure this code only runs on the client side
   useEffect(() => {
-    saveGameState({
-      attempts,
-      currentRow,
-      currentCol,
-      feedback,
-      keyFeedback,
-      gameStatus,
-    });
-  }, [attempts, currentRow, currentCol, feedback, keyFeedback, gameStatus]);
+    setIsClient(true);
+    const savedState = loadGameState();
+    if (savedState) {
+      setAttempts(savedState.attempts || []);
+      setCurrentRow(savedState.currentRow || 0);
+      setCurrentCol(savedState.currentCol || 0);
+      setFeedback(savedState.feedback || []);
+      setKeyFeedback(savedState.keyFeedback || DEFAULT_FEEDBACK);
+      setGameStatus(savedState.gameStatus || "playing");
+    }
+  }, []);
+
+  // Store the updated state in localStorage whenever it changes, but only if we're on the client
+  useEffect(() => {
+    if (isClient) {
+      saveGameState({
+        attempts,
+        currentRow,
+        currentCol,
+        feedback,
+        keyFeedback,
+        gameStatus,
+      });
+    }
+  }, [
+    attempts,
+    currentRow,
+    currentCol,
+    feedback,
+    keyFeedback,
+    gameStatus,
+    isClient,
+  ]);
 
   // Handles letter input and updates the current column in the grid
   const handleInput = (letter: string) => {
