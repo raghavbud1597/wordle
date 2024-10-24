@@ -1,3 +1,18 @@
+/**
+ * Navbar.tsx
+ *
+ * This component renders the navigation bar for the Wordle game.
+ * It includes the Wordle logo, game title, and several buttons for user interactions:
+ * - A button to display the "How to Play" modal.
+ * - A button to show game statistics.
+ * - A button to reset the game with a confirmation modal.
+ * - A button to toggle the on-screen keyboard visibility.
+ * - A button to switch between light and dark themes.
+ * 
+ * The component utilizes localStorage to manage the game state and performs a page reload 
+ * to reset the game. Modals are conditionally rendered based on the component's state.
+ */
+
 "use client";
 
 import React, { useState } from "react";
@@ -59,6 +74,7 @@ const Navbar: React.FC = () => {
         <button className="mx-2">
           <BiReset onClick={() => setShowResetModal(true)} className="w-8 h-8" />
         </button>
+        {/* Disable Keyboard Button */}
         <button className="mx-2">
           {false ? (
             <TbKeyboard onClick={() => {}} className="w-8 h-8 animate-fadeIn" />
@@ -69,6 +85,7 @@ const Navbar: React.FC = () => {
             />
           )}
         </button>
+        {/* Theme Toggle Button */}
         <button onClick={toggleTheme} className="mx-2">
           {theme === "dark" ? (
             <MdOutlineLightMode className="w-8 h-8 animate-fadeIn" />

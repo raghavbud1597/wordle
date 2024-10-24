@@ -1,3 +1,20 @@
+/**
+ * Modal.tsx
+ *
+ * This component renders a modal dialog that can display content and include a title.
+ * It features an overlay that darkens the background when the modal is open.
+ * 
+ * Props:
+ * - `onClose`: A callback function to handle closing the modal, typically invoked 
+ *   when the overlay is clicked or the close button is pressed.
+ * - `title`: A string that sets the title of the modal, displayed prominently at the top.
+ * - `children`: React nodes that represent the content of the modal, allowing 
+ *   for flexibility in what is displayed within the modal.
+ *
+ * The modal is styled to be centered on the screen, with responsive dimensions 
+ * and adaptive styles for dark and light themes.
+ */
+
 "use client";
 
 import React from "react";
