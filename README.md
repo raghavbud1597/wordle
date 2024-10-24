@@ -1,36 +1,105 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Here's an updated `README.md` with additional features related to game stats, light and dark themes, and keyboard representation of tile colors:
 
-## Getting Started
+```markdown
+# Wordle Game
 
-First, run the development server:
+This is a React-based Wordle game where players can guess a 5-letter word within six tries. The game provides feedback on the guessed letters, indicating their presence and position in the target word.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [File Structure](#file-structure)
+
+## Features
+
+- **Word Guessing**: Guess a 5-letter word within 6 attempts.
+- **Feedback System**: Colored tiles indicate the status of each guessed letter:
+  - **Green tile**: Letter is in the word and in the correct position.
+  - **Yellow tile**: Letter is in the word but in the wrong position.
+  - **Gray tile**: Letter is not in the word.
+- **Game Statistics**: View detailed statistics on your game performance, including win rate and attempts.
+- **Light and Dark Theme**: Toggle between light and dark themes for better accessibility and user preference.
+- **Keyboard Representation**: Visual feedback on a virtual keyboard to represent tile colors for each guessed letter.
+- **How to Play Modal**: Access instructions on how to play the game through an interactive modal.
+
+## Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/raghavbud1597/wordle.git
+   cd wordle-game
+   ```
+
+2. Install the dependencies:
+   ```bash
+   npm install
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+4. Open your browser and navigate to `http://localhost:3000` to view the application.
+
+## Usage
+
+- Enter a valid 5-letter word into the input field and press "Enter" to submit your guess.
+- After each guess, observe the color changes of the tiles to determine how close your guess was to the actual word.
+- Access the game statistics to track your performance and see how many games you've won.
+- Toggle between light and dark themes using the theme toggle button in the navbar.
+- Use the virtual keyboard to visualize which letters have been guessed and their corresponding tile colors.
+
+## File Structure
+
+```plaintext
+app
+├── api
+├── validateWord.ts
+├── assets
+│   ├── error.svg
+│   └── wordle.svg
+├── components
+│   ├── Footer.tsx
+│   ├── HowToPlayModal.tsx
+│   ├── Keyboard.tsx
+│   ├── Modal.tsx
+│   ├── Navbar.tsx
+│   ├── StatsModal.tsx
+│   ├── ToastProvider.tsx
+│   ├── WordleBoard.tsx
+│   ├── WordleCell.tsx
+│   ├── WordleGame.tsx
+│   └── WordleRow.tsx
+├── constants
+│   └── GameInfo.ts
+├── error
+│   └── page.tsx
+├── game
+│   └── page.tsx
+├── helpers
+│   ├── gameHelpers.ts
+│   └── gameStatsHelpers.ts
+├── hooks
+│   ├── useGameStats.ts
+│   ├── useTheme.ts
+│   └── useWordleGame.ts
+├── favicon.svg
+├── globals.css
+├── layout.tsx
+├── page.tsx
+├── public
+│   └── favicon.svg
+├── .eslintrc.json
+├── .gitignore
+├── README.md
+├── next.config.ts
+├── package-lock.json
+├── package.json
+├── postcss.config.mjs
+├── tailwind.config.ts
+└── tsconfig.json
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
