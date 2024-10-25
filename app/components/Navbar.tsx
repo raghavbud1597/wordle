@@ -34,14 +34,13 @@ import StatsModal from "./StatsModal";
 
 // Function to reset the game and clear localStorage
 const resetGame = () => {
-  localStorage.removeItem("wordleGameState"); // Remove game state from localStorage
-  redirect('/');  // Redirect to the home page
+  localStorage.removeItem("wordleGameState"); 
+  redirect('/');
 };
 
 const Navbar: React.FC = () => {
   const { theme, toggleTheme } = useTheme();
 
-  // States to control different modals
   const [showHowToPlayModal, setShowHowToPlayModal] = useState(false);
   const [showStatsModal, setShowStatsModal] = useState(false);
   const [showResetModal, setShowResetModal] = useState(false);
@@ -74,17 +73,6 @@ const Navbar: React.FC = () => {
         {/* Reset Game Button */}
         <button className="mx-2">
           <BiReset onClick={() => setShowResetModal(true)} className="w-8 h-8" />
-        </button>
-        {/* Disable Keyboard Button */}
-        <button className="mx-2">
-          {false ? (
-            <TbKeyboard onClick={() => {}} className="w-8 h-8 animate-fadeIn" />
-          ) : (
-            <TbKeyboardOff
-              onClick={() => {}}
-              className="w-8 h-8 animate-fadeIn"
-            />
-          )}
         </button>
         {/* Theme Toggle Button */}
         <button onClick={toggleTheme} className="mx-2">

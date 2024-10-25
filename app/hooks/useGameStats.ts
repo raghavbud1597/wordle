@@ -10,7 +10,6 @@ export const useGameStats = () => {
     guessDistribution: Array(6).fill(0),
   };
 
-  // State to manage the game stats
   const [played, setPlayed] = useState<number>(initialStats.played);
   const [wins, setWins] = useState<number>(initialStats.wins);
   const [currentStreak, setCurrentStreak] = useState<number>(initialStats.currentStreak);

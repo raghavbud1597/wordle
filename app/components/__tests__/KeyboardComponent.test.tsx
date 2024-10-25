@@ -44,10 +44,8 @@ describe("Keyboard component", () => {
       />
     );
 
-    // Simulate a click on the "A" key
     fireEvent.click(screen.getByLabelText("Key A"));
 
-    // Ensure onKeyPress is called with the correct letter
     expect(mockOnKeyPress).toHaveBeenCalledWith("A");
   });
 
@@ -61,10 +59,8 @@ describe("Keyboard component", () => {
       />
     );
 
-    // Simulate a click on the delete button
     fireEvent.click(screen.getByLabelText("Delete"));
 
-    // Ensure onDelete is called
     expect(mockOnDelete).toHaveBeenCalled();
   });
 

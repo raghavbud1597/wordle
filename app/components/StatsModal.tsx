@@ -14,7 +14,6 @@ import React from "react";
 import { useGameStats } from "../hooks/useGameStats";
 import Modal from "./Modal";
 
-// TypeScript types for game stats
 type GameStats = {
   played: number;
   winPercentage: number;

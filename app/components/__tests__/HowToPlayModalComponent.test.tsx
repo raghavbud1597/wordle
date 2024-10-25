@@ -1,5 +1,3 @@
-// HowToPlayModal.test.tsx
-
 import { render, screen, fireEvent } from "@testing-library/react";
 import HowToPlayModal from "../HowToPlayModal";
 import { describe, it, expect, vi, beforeEach } from "vitest";

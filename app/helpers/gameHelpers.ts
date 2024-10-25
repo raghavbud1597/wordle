@@ -16,5 +16,5 @@ export const loadGameState = () => {
     const savedState = localStorage.getItem("wordleGameState");
     return savedState ? JSON.parse(savedState) : null;
   }
-  return null; // Return null if not in the browser environment
+  return null;
 };

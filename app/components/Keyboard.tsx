@@ -1,3 +1,24 @@
+/**
+ * Keyboard.tsx
+ *
+ * This component renders an interactive keyboard for gameplay, allowing users to enter letters,
+ * delete input, and submit guesses via the "Enter" button. Each key displays feedback indicating
+ * whether the guessed letters are correct, misplaced, or absent, based on the `keyFeedback` prop.
+ *
+ * Props:
+ * - `onKeyPress`: A function triggered when a letter key is pressed, passing the selected letter.
+ * - `onDelete`: A function that executes when the "Delete" key is pressed.
+ * - `onEnter`: A function that executes when the "Enter" key is pressed to submit a guess.
+ * - `keyFeedback`: An object providing feedback scores (0, 1, or 2) for each letter, affecting the key's styling.
+ *
+ * Key Features:
+ * - Renders three rows of letter keys (`topRow`, `middleRow`, `bottomRow`) styled based on feedback.
+ * - Keys update styles dynamically based on `keyFeedback`:
+ *   - Green for correct letters, yellow for misplaced, and gray for absent.
+ * - Enter and Delete buttons are positioned with the bottom row.
+ *
+ */
+
 "use client";
 
 import React, { useMemo } from "react";

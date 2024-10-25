@@ -13,7 +13,6 @@ import Keyboard from "./Keyboard";
 import { useWordleGame } from "./../hooks/useWordleGame";
 
 export default function WordleGame() {
-  // Destructure the game logic methods and state from the custom hook
   const {
     attempts,
     feedback,

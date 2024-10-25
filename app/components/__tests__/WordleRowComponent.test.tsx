@@ -36,12 +36,12 @@ describe('WordleRow', () => {
   it('defaults score to -1 when feedback is not provided', () => {
     const word = ['A', 'B', 'C', 'D', 'E'];
 
-    render(<WordleRow word={word} />); // No feedback provided
+    render(<WordleRow word={word} />);
 
     const cells = screen.getAllByTestId('mock-cell');
     
     cells.forEach(cell => {
-      expect(cell).toHaveAttribute('data-score', '-1'); // Default score check
+      expect(cell).toHaveAttribute('data-score', '-1');
     });
   });
 });

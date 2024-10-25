@@ -18,7 +18,7 @@ import { saveGameState, loadGameState } from "../helpers/gameHelpers";
 import { useGameStats } from "./useGameStats";
 
 export const useWordleGame = () => {
-  const { recordWin, recordLoss } = useGameStats(); // Get stats functions
+  const { recordWin, recordLoss } = useGameStats();
 
   const [attempts, setAttempts] = useState<string[][]>(
     Array(MAX_ATTEMPTS).fill(Array(WORD_LENGTH).fill(""))
@@ -35,7 +35,6 @@ export const useWordleGame = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [isClient, setIsClient] = useState<boolean>(false);
 
-  // Ensure this code only runs on the client side
   useEffect(() => {
     setIsClient(true);
     const savedState = loadGameState();
@@ -73,7 +72,7 @@ export const useWordleGame = () => {
 
   // Handles letter input and updates the current column in the grid
   const handleInput = (letter: string) => {
-    if (gameStatus !== "playing") return; // Prevent input if game is won or lost
+    if (gameStatus !== "playing") return; 
     if (currentCol < WORD_LENGTH) {
       setAttempts((prevGrid) => {
         const newGrid = [...prevGrid];
@@ -81,19 +80,19 @@ export const useWordleGame = () => {
         newGrid[currentRow][currentCol] = letter;
         return newGrid;
       });
-      setCurrentCol((prevCol) => prevCol + 1); // Move to the next column
+      setCurrentCol((prevCol) => prevCol + 1);
     }
   };
 
   // Handles deletion of the last letter in the current row
   const handleDelete = () => {
-    if (gameStatus !== "playing") return; // Prevent delete if game is won or lost
+    if (gameStatus !== "playing") return;
     if (currentCol > 0) {
-      setCurrentCol((prevCol) => prevCol - 1); // Move back one column
+      setCurrentCol((prevCol) => prevCol - 1);
       setAttempts((prevGrid) => {
         const newGrid = [...prevGrid];
         newGrid[currentRow] = [...newGrid[currentRow]];
-        newGrid[currentRow][currentCol - 1] = ""; // Clear the previous column
+        newGrid[currentRow][currentCol - 1] = "";
         return newGrid;
       });
     }
@@ -101,7 +100,7 @@ export const useWordleGame = () => {
 
   // Handles submission of the current word and validates it
   const handleSubmit = async () => {
-    if (gameStatus !== "playing") return; // Prevent submission if game is won or lost
+    if (gameStatus !== "playing") return;
 
     // Check if an API call is already in progress
     if (loading) {
@@ -118,7 +117,7 @@ export const useWordleGame = () => {
         const isValid = await validateWord(currentWord);
 
         if (isValid?.is_valid_word) {
-          setFeedback((prevFeedback) => [...prevFeedback, isValid.score]); // Update feedback
+          setFeedback((prevFeedback) => [...prevFeedback, isValid.score]);
 
           // Update key feedback based on the score
           isValid.score.forEach((score: number, index: number) => {
@@ -132,31 +131,31 @@ export const useWordleGame = () => {
 
           // Check if the word is correct (all letters have a score of 2)
           if (isValid.score.every((score: number) => score === 2)) {
-            setGameStatus("won"); // Mark game as won
+            setGameStatus("won"); 
             toast.success("Congratulations! You guessed the word!");
-            recordWin(currentRow + 1); // Record the win with attempts
+            recordWin(currentRow + 1); 
           } else if (currentRow === MAX_ATTEMPTS - 1) {
-            setGameStatus("lost"); // Mark game as lost if no attempts are left
+            setGameStatus("lost"); 
             toast.error("Game Over! No more attempts.");
-            recordLoss(); // Record the loss
+            recordLoss();
           } else {
-            setCurrentRow((prevRow) => prevRow + 1); // Move to the next row
-            setCurrentCol(0); // Reset column for the new row
+            setCurrentRow((prevRow) => prevRow + 1); 
+            setCurrentCol(0);
           }
         } else {
-          toast.error("Invalid Word!"); // Handle invalid word case
+          toast.error("Invalid Word!"); 
         }
       } catch (error) {
         toast.error("Error validating word.");
       } finally {
-        setLoading(false); // Reset loading after API call completes
+        setLoading(false);
       }
     }
   };
 
   // Handles key press events for the game (Enter, Backspace, letter keys)
   const handleKeyPress = (event: KeyboardEvent) => {
-    if (gameStatus !== "playing") return; // Prevent further keypress if game is won or lost
+    if (gameStatus !== "playing") return;
 
     const key = event.key;
     if (key === "Enter") {
