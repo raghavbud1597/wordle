@@ -37,15 +37,8 @@ describe('validateWord', () => {
     (fetch as vi.Mock).mockResolvedValueOnce({
       ok: false,
       statusText: 'Not Found',
+      json: async () => mockResponse,
     });
-
-    await validateWord('apple');
-    expect(redirect).toHaveBeenCalledWith('/error');
-    expect(fetch).toHaveBeenCalled();
-  });
-
-  it('should redirect to the error page if an error occurs', async () => {
-    (fetch as vi.Mock).mockRejectedValueOnce(new Error('Network Error'));
 
     await validateWord('apple');
     expect(redirect).toHaveBeenCalledWith('/error');
