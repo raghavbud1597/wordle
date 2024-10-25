@@ -64,7 +64,7 @@ export default function Keyboard({
       <button
         key={letter}
         onClick={() => onKeyPress(letter)}
-        className={`rounded-md text-sm w-8 h-8 md:text-lg md:w-10 md:h-10 font-bold border-2 shadow-lg shadow-slate-300 dark:shadow-slate-800 ${getKeyClass(letter)}`}
+        className={`md:rounded-md text-xs w-8 h-8 md:text-lg md:w-10 md:h-10 font-bold border-2 shadow-lg shadow-slate-300 dark:shadow-slate-800 ${getKeyClass(letter)}`}
         aria-label={`Key ${letter}`}
       >
         {letter}
@@ -73,18 +73,18 @@ export default function Keyboard({
   };
 
   return (
-    <div className="flex flex-col items-center space-y-2 mt-4 md:py-4">
+    <div className="flex flex-col items-center md:space-y-2 mt-4 md:py-4">
       {/* Top row */}
-      <div className="flex space-x-1 md:space-x-2">{renderKeyRow(topRow)}</div>
+      <div className="flex md:space-x-1 lg:space-x-2">{renderKeyRow(topRow)}</div>
 
       {/* Middle row */}
-      <div className="flex space-x-1 md:space-x-2">{renderKeyRow(middleRow)}</div>
+      <div className="flex md:space-x-1 lg:space-x-2">{renderKeyRow(middleRow)}</div>
 
       {/* Bottom row with Enter and Delete */}
-      <div className="flex space-x-1 md:space-x-2">
+      <div className="flex md:space-x-1 lg:space-x-2">
         <button
           onClick={onDelete}
-          className="p-1 px-2 md:p-2 md:px-4 bg-red-500 text-white rounded-md shadow-lg shadow-slate-300 dark:shadow-slate-800"
+          className="p-1 md:p-2 md:px-4 bg-red-500 text-white md:rounded-md shadow-lg shadow-slate-300 dark:shadow-slate-800"
           aria-label="Delete"
         >
           Delete
@@ -92,7 +92,7 @@ export default function Keyboard({
         {renderKeyRow(bottomRow)}
         <button
           onClick={onEnter}
-          className="p-2 px-4 bg-blue-500 text-white rounded-md shadow-lg shadow-slate-300 dark:shadow-slate-800"
+          className="p-1 md:p-2 md:px-4 bg-blue-500 text-white md:rounded-md shadow-lg shadow-slate-300 dark:shadow-slate-800"
           aria-label="Enter"
         >
           Enter
