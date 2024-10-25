@@ -30,7 +30,6 @@ export const validateWord = async (guess: string): Promise<ValidateResponse> => 
     // If the response is not OK, redirect to the error page
     if (!response.ok) {
       redirect('/error');
-      throw new Error(`API Error: ${response.statusText}`);
     }
 
     // Parse and return the response data
@@ -41,6 +40,6 @@ export const validateWord = async (guess: string): Promise<ValidateResponse> => 
     console.error("Error validating the word:", error);
     // Navigate to an error page on catch
     redirect('/error');
-    throw new Error("Failed to validate the word. Redirecting to the error page.");
+    
   }
 };
