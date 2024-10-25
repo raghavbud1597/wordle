@@ -20,8 +20,6 @@ import useTheme from "../hooks/useTheme";
 import { redirect } from 'next/navigation';
 import Image from "next/image";
 import WordleLogo from "../assets/wordle.svg";
-import { TbKeyboard } from "react-icons/tb";
-import { TbKeyboardOff } from "react-icons/tb";
 import { MdOutlineLightMode } from "react-icons/md";
 import { MdOutlineDarkMode } from "react-icons/md";
 import { MdOutlineLightbulb } from "react-icons/md";

@@ -10,7 +10,7 @@ vi.mock("./../../hooks/useWordleGame", () => ({
 
 vi.mock("./../WordleBoard", () => {
   return {
-    default: vi.fn(({ attempts, feedback }) => (
+    default: vi.fn(({ attempts }) => (
       <div data-testid="mock-board">
         {attempts.map((attempt, index) => (
           <div key={index} data-testid={`attempt-${index}`}>

@@ -146,6 +146,7 @@ export const useWordleGame = () => {
           toast.error("Invalid Word!"); 
         }
       } catch (error) {
+        console.error(error);
         toast.error("Error validating word.");
       } finally {
         setLoading(false);

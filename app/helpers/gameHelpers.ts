@@ -5,8 +5,17 @@
  * the game state to and from localStorage.
  */
 
+interface GameState {
+  attempts: string[][]; 
+  currentRow: number; 
+  currentCol: number;
+  feedback: number[][];
+  keyFeedback: { [key: string]: number };
+  gameStatus: "playing" | "won" | "lost";
+}
+
 // Helper function to save game state to localStorage
-export const saveGameState = (state: any) => {
+export const saveGameState = (state: GameState) => {
   localStorage.setItem("wordleGameState", JSON.stringify(state));
 };
 
