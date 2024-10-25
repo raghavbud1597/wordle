@@ -46,13 +46,13 @@ export default function Keyboard({
       const score = keyFeedback[letter] ?? -1; // Default to -1 if no score
       switch (score) {
         case 2:
-          return "bg-green-600 text-white border-green-800"; // Correct
+          return "bg-green-600 text-white md:border-green-800"; // Correct
         case 1:
-          return "bg-yellow-600 text-white border-yellow-800"; // Misplaced
+          return "bg-yellow-600 text-white md:border-yellow-800"; // Misplaced
         case 0:
-          return "bg-slate-700 text-white border-slate-500"; // Not Present
+          return "bg-slate-700 text-white md:border-slate-500"; // Not Present
         default:
-          return "bg-slate-300 text-black dark:bg-slate-500 dark:text-white border-slate-400"; // Default
+          return "bg-slate-300 text-black dark:bg-slate-500 dark:text-white md:border-slate-400"; // Default
       }
     },
     [keyFeedback]
@@ -64,7 +64,7 @@ export default function Keyboard({
       <button
         key={letter}
         onClick={() => onKeyPress(letter)}
-        className={`md:rounded-md text-xs w-8 h-8 md:text-lg md:w-10 md:h-10 font-bold border-2 shadow-lg shadow-slate-300 dark:shadow-slate-800 ${getKeyClass(letter)}`}
+        className={`md:rounded-md text-xs w-8 h-8 md:text-lg md:w-10 md:h-10 font-bold md:border-2 shadow-lg shadow-slate-300 dark:shadow-slate-800 ${getKeyClass(letter)}`}
         aria-label={`Key ${letter}`}
       >
         {letter}
