@@ -1,14 +1,14 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import WordleGame from "./../components/WordleGame";
-import { useWordleGame } from "./../hooks/useWordleGame";
+import WordleGame from "../WordleGame";
+import { useWordleGame } from "../../hooks/useWordleGame";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import "@testing-library/jest-dom";
 
-vi.mock("./../hooks/useWordleGame", () => ({
+vi.mock("./../../hooks/useWordleGame", () => ({
   useWordleGame: vi.fn(),
 }));
 
-vi.mock("./../components/WordleBoard", () => {
+vi.mock("./../WordleBoard", () => {
   return {
     default: vi.fn(({ attempts, feedback }) => (
       <div data-testid="mock-board">
@@ -24,7 +24,7 @@ vi.mock("./../components/WordleBoard", () => {
   };
 });
 
-vi.mock("./../components/Keyboard", () => {
+vi.mock("./../Keyboard", () => {
   return {
     default: vi.fn(({ onKeyPress, onDelete, onEnter }) => (
       <div>

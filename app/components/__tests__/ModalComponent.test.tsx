@@ -1,7 +1,7 @@
 // Modal.test.tsx
 
 import { render, screen, fireEvent } from "@testing-library/react";
-import Modal from "./../components/Modal";
+import Modal from "../Modal";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import '@testing-library/jest-dom';
 

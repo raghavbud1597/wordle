@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import '@testing-library/jest-dom';
-import WordleCell from './../components/WordleCell';
+import WordleCell from '../WordleCell';
 
 describe('WordleCell Component', () => {
   it('renders the letter and applies correct styles based on score', () => {

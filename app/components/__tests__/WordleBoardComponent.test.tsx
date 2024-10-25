@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
-import WordleBoard from './../components/WordleBoard';
+import WordleBoard from '../WordleBoard';
 
-vi.mock('./../components/WordleRow', () => {
+vi.mock('./../WordleRow', () => {
   return {
     default: function MockWordleRow() {
       return <div data-testid="wordle-row" />;

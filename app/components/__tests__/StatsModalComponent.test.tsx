@@ -1,10 +1,10 @@
 import { render, screen, fireEvent } from '@testing-library/react';
-import StatsModal from '../components/StatsModal';
-import * as useGameStatsHook from '../hooks/useGameStats';
+import StatsModal from '../StatsModal';
+import * as useGameStatsHook from '../../hooks/useGameStats';
 import { describe, it, expect, beforeEach, vi } from 'vitest';
 import '@testing-library/jest-dom';
 
-vi.mock('../hooks/useGameStats', () => ({
+vi.mock('../../hooks/useGameStats', () => ({
   __esModule: true,
   useGameStats: vi.fn(),
 }));

@@ -2,14 +2,14 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import '@testing-library/jest-dom';
-import WordleRow from './../components/WordleRow';
+import WordleRow from '../WordleRow';
 
 interface WordleCellProps {
     letter: string;
     score: number;
   }
 
-vi.mock('./../components/WordleCell', () => {
+vi.mock('./../WordleCell', () => {
     return {
       default: function MockWordleCell({ letter, score }: WordleCellProps) {
         return <div data-testid="mock-cell" data-score={score}>{letter}</div>;

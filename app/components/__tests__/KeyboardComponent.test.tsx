@@ -1,5 +1,5 @@
 import { render, fireEvent, screen } from "@testing-library/react";
-import Keyboard from "./../components/Keyboard";
+import Keyboard from "../Keyboard";
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import '@testing-library/jest-dom';
 
