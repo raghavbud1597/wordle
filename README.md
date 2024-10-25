@@ -20,6 +20,7 @@ This is a React-based Wordle game where players can guess a 5-letter word within
 - **Light and Dark Theme**: Toggle between light and dark themes for better accessibility and user preference.
 - **Keyboard Representation**: Visual feedback on a virtual keyboard to represent tile colors for each guessed letter.
 - **How to Play Modal**: Access instructions on how to play the game through an interactive modal.
+- **Accessibility**: Designed to be accessible to individuals with disabilities, ensuring inclusive gameplay for everyone.
 
 ## Installation
 
@@ -54,11 +55,22 @@ This is a React-based Wordle game where players can guess a 5-letter word within
 ```plaintext
 app
 ├── api
+├── ValidateWord.test.tsx
 ├── validateWord.ts
 ├── assets
 │   ├── error.svg
 │   └── wordle.svg
 ├── components
+│   ├── __tests__
+│   │   ├── FooterComponent.test.tsx
+│   │   ├── HowToPlayModalComponent.test.tsx
+│   │   ├── KeyboardComponent.test.tsx
+│   │   ├── ModalComponent.test.tsx
+│   │   ├── StatsModalComponent.test.tsx
+│   │   ├── WordleBoardComponent.test.tsx
+│   │   ├── WordleCellComponent.test.tsx
+│   │   ├── WordleGameComponent.test.tsx
+│   │   └── WordleRowComponent.test.tsx
 │   ├── Footer.tsx
 │   ├── HowToPlayModal.tsx
 │   ├── Keyboard.tsx
@@ -73,16 +85,24 @@ app
 ├── constants
 │   └── GameInfo.ts
 ├── error
+│   ├── __snapshots__
+│   │   └── ErrorPage.test.tsx.snap
+│   ├── ErrorPage.test.tsx
 │   └── page.tsx
 ├── game
+│   ├── Game.test.tsx
 │   └── page.tsx
 ├── helpers
+│   ├── __tests__
+│   │   ├── GameHelpers.test.tsx
+│   │   └── gameStatsHelpers.test.tsx
 │   ├── gameHelpers.ts
 │   └── gameStatsHelpers.ts
 ├── hooks
 │   ├── useGameStats.ts
 │   ├── useTheme.ts
 │   └── useWordleGame.ts
+├── HomePage.test.tsx
 ├── favicon.svg
 ├── globals.css
 ├── layout.tsx
@@ -95,8 +115,5 @@ app
 ├── next.config.ts
 ├── package-lock.json
 ├── package.json
-├── postcss.config.mjs
-├── tailwind.config.ts
-└── tsconfig.json
-```
+└── postcss.config.mjs
 ```
