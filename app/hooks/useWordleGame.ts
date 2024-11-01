@@ -10,6 +10,7 @@ import { useState, useEffect } from "react";
 import { validateWord } from "../api/validateWord";
 import {
   MAX_ATTEMPTS,
+  HARD_MAX_ATTEMPT,
   WORD_LENGTH,
   DEFAULT_FEEDBACK,
 } from "../constants/GameInfo";
@@ -21,7 +22,7 @@ export const useWordleGame = () => {
   const { recordWin, recordLoss } = useGameStats();
 
   const [attempts, setAttempts] = useState<string[][]>(
-    Array(MAX_ATTEMPTS).fill(Array(WORD_LENGTH).fill(""))
+    Array(HARD_MAX_ATTEMPT).fill(Array(WORD_LENGTH).fill(""))
   );
   const [currentRow, setCurrentRow] = useState<number>(0);
   const [currentCol, setCurrentCol] = useState<number>(0);
@@ -34,7 +35,6 @@ export const useWordleGame = () => {
   );
   const [loading, setLoading] = useState<boolean>(false);
   const [isClient, setIsClient] = useState<boolean>(false);
-
   useEffect(() => {
     setIsClient(true);
     const savedState = loadGameState();
@@ -134,7 +134,7 @@ export const useWordleGame = () => {
             setGameStatus("won"); 
             toast.success("Congratulations! You guessed the word!");
             recordWin(currentRow + 1); 
-          } else if (currentRow === MAX_ATTEMPTS - 1) {
+          } else if (currentRow === HARD_MAX_ATTEMPT - 1) {
             setGameStatus("lost"); 
             toast.error("Game Over! No more attempts.");
             recordLoss();
